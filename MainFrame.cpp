@@ -3,6 +3,7 @@
 #define VALUE_RECT_WIDTH 120
 #define VALUE_RECT_HORZ_SPACE 10
 #define VALUE_RECT_HEIGHT 40
+#define VALUE_RECT_LABEL_VERT_OFFSET 20
 
 BEGIN_MESSAGE_MAP(CMainFrame, CFrameWnd)
 	ON_WM_PAINT()
@@ -37,6 +38,11 @@ void CMainFrame::OnPaint()
 	dc.Rectangle(mRectLength);
 	dc.Rectangle(mRectWidth);
 	dc.Rectangle(mRectArea);
+
+	// Display rectangle captions
+	dc.TextOut(mPointLength.x, mPointLength.y - VALUE_RECT_LABEL_VERT_OFFSET, _T("Length "));
+	dc.TextOut(mPointWidth.x - 10, mPointLength.y - VALUE_RECT_LABEL_VERT_OFFSET, _T("* Width"));
+	dc.TextOut(mPointArea.x - 10, mPointLength.y - VALUE_RECT_LABEL_VERT_OFFSET, _T("= Area"));
 }
 
 
