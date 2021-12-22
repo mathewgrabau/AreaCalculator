@@ -17,7 +17,7 @@ private:
 	CRect mRectWidth;
 	CRect mRectArea;
 
-	char mStringActive;	// Which string is currently active (L/W)
+	char mCurrentString;	// Which string is currently active (L/W)
 
 public:
 	CMainFrame();
