@@ -60,17 +60,44 @@ void CMainFrame::OnChar(UINT nChar, UINT nRep, UINT nFlags)
 	switch (mCurrentString)
 	{
 	case 'L':
+		mStringLength = mStringLength + (char)nChar;
 		break;
 
 	case 'W':
+		mStringWidth = mStringWidth + (char)nChar;
 		break;
 
 	default:
 		break;
 	}
+
+	Invalidate();
 }
 
 void CMainFrame::OnLButtonDown(UINT nFlags, CPoint point)
 {
+	if (mRectLength.PtInRect(point))
+	{
+		mStringLength = "";
+		mCurrentString = 'L';
+		mStringArea = "click for result";
+	}
+
+	if (mRectWidth.PtInRect(point))
+	{
+		mStringWidth = "";
+		mCurrentString = 'W';
+		mStringArea = "click for result";
+	}
+
+	if (mRectArea.PtInRect(point))
+	{
+		// Note we need to use the _t variants of these functions.
+		double area = _ttof(mStringLength) * _ttof(mStringWidth);
+		mStringArea.Format(_T("%10.3f"), area);
+		mCurrentString = 'A';
+	}
+
+	Invalidate();
 }
 
